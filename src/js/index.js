@@ -46,24 +46,22 @@ const reposTemplate = (repos) => {
 };
 
 const showUserInfo = ($dom, data) => {
-  $dom.append(userTemplate(data));
+  $dom.html(userTemplate(data));
 };
 
 const userTemplate = (user) => {
-  return `<div class="user_infos_container active">
-    <div class="user_infos_wrapper">
-      <div>
-        <i aria-hidden="true" class="fa fa-user-circle"></i>&nbsp;&nbsp;${user.name}
-      </div>
-      <div>
-        <i aria-hidden="true" class="fa fa-map-marker"></i>&nbsp;&nbsp;${user.location}
-      </div>
-      <div>
-        <i aria-hidden="true" class="fa fa-users"></i>&nbsp;&nbsp;${user.company}
-      </div>
-      <div>
-        <i aria-hidden="true" class="fa fa-edge"></i>&nbsp;&nbsp;${user.blog}
-      </div>
+  return `<div class="infos_container">
+    <div>
+      <i aria-hidden="true" class="fa fa-user-circle"></i>&nbsp;&nbsp;${user.name}
+    </div>
+    <div>
+      <i aria-hidden="true" class="fa fa-map-marker"></i>&nbsp;&nbsp;${user.location}
+    </div>
+    <div>
+      <i aria-hidden="true" class="fa fa-users"></i>&nbsp;&nbsp;${user.company}
+    </div>
+    <div>
+      <i aria-hidden="true" class="fa fa-edge"></i>&nbsp;&nbsp;${user.blog}
     </div>
   </div>`;
 };
@@ -90,16 +88,17 @@ $(() => {
   const avatorMouseover = Rx.Observable.fromEvent($avator, 'mouseover')
     .map(function(e) {
       const $userContainer = $(e.target).parent();
-      const $userInfosContainer = $userContainer.find('.user_infos_container');
-      if ($userInfosContainer.length) {
-        $userInfosContainer.addClass('active');
+      const $infosContainer = $userContainer.find('.user_infos_container');
+      const $infosWrapper = $infosContainer.find('.user_infos_wrapper');
+      $infosContainer.addClass('active');
+      if ($infosWrapper.find('.infos_container').length) {
         return {
-          conatiner: $userContainer,
+          conatiner: $infosWrapper,
           url: null
         };
       }
       return {
-        conatiner: $userContainer,
+        conatiner: $infosWrapper,
         url: $(e.target).attr('data-api')
       }
     })
@@ -119,9 +118,7 @@ $(() => {
 
   const avatorMouseout = Rx.Observable.fromEvent($avator, 'mouseout')
     .map(function(e) {
-      const $userInfosContainer = $(e.target).parent().find('.user_infos_container');
-      if ($userInfosContainer.length) {
-        $userInfosContainer.removeClass('active');
-      }
+      const $infosContainer = $(e.target).parent().find('.user_infos_container');
+      $infosContainer.removeClass('active');
     }).subscribe();
 });
