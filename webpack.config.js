@@ -24,7 +24,9 @@ entryFiles
 });
 
 module.exports = {
-  entry: entries,
+  entry: {
+    index: './src/js/index.js'
+  },
   output: {
     filename: '[name].bundle.js',
     path: PATH.BUILD_PATH
