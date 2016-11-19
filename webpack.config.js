@@ -2,6 +2,9 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CleanPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const postcssImport = require("postcss-import");
+const cssnext = require("postcss-cssnext");
+
 const PATH = require('./path');
 const path = require('path');
 const fs = require('fs');
@@ -30,7 +33,7 @@ module.exports = {
     loaders: [
       {test: require.resolve("jquery"), loader: "expose?jQuery"},
       {test: require.resolve("jquery"), loader: "expose?$"},
-      {test: /\.css$/, loader: ExtractTextPlugin.extract("style", "css")},
+      {test: /\.css$/, loader: ExtractTextPlugin.extract("style", "css!postcss")},
       {
         test: /\.js$/,
         exclude: /(node_modules)/,
@@ -43,6 +46,12 @@ module.exports = {
   },
   resolve: {
     extensions: ['', '.js', '.jsx'],
+  },
+  postcss: function() {
+    return [
+      postcssImport({addDependencyTo: webpack}),
+      cssnext({autoprefixer: {browsers: "ie >= 9, ..."}})
+    ];
   },
   plugins: [
     new ExtractTextPlugin("[name].bundle.css", {

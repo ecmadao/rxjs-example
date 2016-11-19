@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body,html {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 100%;
+  width: 100%;
+}
+
+.main_container {
+  max-width: 1000px;
+  width: 80%;
+  min-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding: 80px 0;
+}
+
+input.search {
+  border: none;
+  outline: none;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.12), 0 0 4px 0 rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.12), 0 0 4px 0 rgba(0, 0, 0, 0.08);
+  -webkit-box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.12), 0 0 4px 0 rgba(0, 0, 0, 0.08);
+  height: 35px;
+  line-height: 35px;
+  padding: 0 15px;
+  color: #4a4a4a;
+  font-size: 14px;
+  background-color: #fff;
+  border-radius: 2px;
+  margin: 15px;
+  transition: all 400ms;
+  -ms-transition: all 400ms;
+  -moz-transition: all 400ms;
+  -o-transition: all 400ms;
+  -webkit-transition: all 400ms;
+  width: 200px;
+}
