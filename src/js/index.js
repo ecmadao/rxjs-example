@@ -42,7 +42,7 @@ const reposTemplate = (repos) => {
           ${repos.description}
         </div>
         <div class="repos_info">
-          <em class="repos_language">${repos.language}</em>
+          <em class="repos_language">${repos.language || ''}</em>
           <i aria-hidden="true" class="fa fa-star"></i>&nbsp;${repos.stargazers_count}&nbsp;&nbsp;
           <i aria-hidden="true" class="fa fa-eye"></i>&nbsp;${repos.watchers_count}&nbsp;&nbsp;
           <i aria-hidden="true" class="fa fa-code-fork"></i>&nbsp;${repos.forks_count}&nbsp;&nbsp;
@@ -64,21 +64,21 @@ const userTemplate = (user) => {
         <i aria-hidden="true" class="fa fa-user-circle"></i>
       </div>&nbsp;&nbsp;${user.name}
     </div>
-    <div class="info_container">
+    ${user.location ? `<div class="info_container">
       <div class="info_icon">
         <i aria-hidden="true" class="fa fa-map-marker"></i>
       </div>&nbsp;&nbsp;${user.location}
-    </div>
-    <div class="info_container">
+    </div>` : ''}
+    ${user.company ? `<div class="info_container">
       <div class="info_icon">
         <i aria-hidden="true" class="fa fa-users"></i>
       </div>&nbsp;&nbsp;${user.company}
-    </div>
-    <div class="info_container">
+    </div>` : ''}
+    ${user.blog ? `<a class="info_container" target="_blank" href="${user.blog}">
       <div class="info_icon">
         <i aria-hidden="true" class="fa fa-edge"></i>
       </div>&nbsp;&nbsp;${user.blog}
-    </div>
+    </a>` : ''}
   </div>`;
 };
 

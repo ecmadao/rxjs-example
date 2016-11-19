@@ -141,6 +141,14 @@ input.search {
             transform: translate(-50%, -50%);
           }
 
+          & a.info_container {
+            color: #4990E2;
+
+            &:hover {
+              color: #1565C0;
+            }
+          }
+
           & .info_container {
             height: 25px;
             line-height: 25px;
@@ -149,6 +157,9 @@ input.search {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            display: block;
+            text-decoration: none;
+            transition: all 400ms;
 
             & .info_icon {
               width: 25px;
@@ -181,11 +192,11 @@ input.search {
 
       & a {
         text-decoration: none;
-        color: #343434;
+        color: #4990E2;
         transition: all 400ms;
 
         &:hover {
-          color: #4990E2;
+          color: #1565C0;
         }
       }
 
