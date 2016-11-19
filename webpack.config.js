@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CleanPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const PATH = require('./path');
 const path = require('path');
 const fs = require('fs');
@@ -55,6 +56,11 @@ module.exports = {
     new CleanPlugin(PATH.BUILD_PATH, {
       root: PATH.ROOT_PATH,
       verbose: true
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: 'index.html',
+      chunks: ['index']
     })
   ],
   debug: true,
