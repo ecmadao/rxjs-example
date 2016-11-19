@@ -1,6 +1,8 @@
-import Rx from 'rxjs/Rx';
+// import Rx from 'rxjs/Rx';
+import Rx from 'rx';
 import {polyfill} from 'es6-promise';
 import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
 import {TOKEN} from './const_value';
 polyfill();
 
@@ -20,7 +22,7 @@ const getReposPromise = (query) => {
       error: (err) => {
         console.log(err);
         NProgress.done();
-        reject(false);
+        resolve([]);
       }
     });
   });
