@@ -27,9 +27,9 @@ input.search {
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.12), 0 0 4px 0 rgba(0, 0, 0, 0.08);
   -moz-box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.12), 0 0 4px 0 rgba(0, 0, 0, 0.08);
   -webkit-box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.12), 0 0 4px 0 rgba(0, 0, 0, 0.08);
-  height: 40px;
-  line-height: 40px;
-  padding: 0 15px;
+  height: 25px;
+  line-height: 25px;
+  padding: 7.5px 15px;
   color: #4a4a4a;
   font-size: 14px;
   background-color: #fff;
@@ -87,6 +87,7 @@ input.search {
   & .repos_user_container {
     margin-left: -50px;
     text-align: left;
+    position: relative;
 
     &::after {
       content: '';
@@ -110,6 +111,38 @@ input.search {
       -webkit-transition: all 400ms;
 
       &:hover {
+        box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.3);
+        -moz-box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.3);
+        -webkit-box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.3);
+        -o-box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.3);
+        -ms-box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    & .user_infos_container {
+      position: absolute;
+      left: 0;
+      top: 40px;
+      z-index: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 400ms;
+      -ms-transition: all 400ms;
+      -moz-transition: all 400ms;
+      -o-transition: all 400ms;
+      -webkit-transition: all 400ms;
+
+      &.active {
+        opacity: 1;
+        visibility: visible;
+        z-index: 9;
+      }
+
+      & .user_infos_wrapper {
+        padding: 10px;
+        background-color: #fff;
+        margin-top: 10px;
+        border-radius: 2px;
         box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.3);
         -moz-box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.3);
         -webkit-box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.3);

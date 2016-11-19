@@ -14,7 +14,7 @@ const getReposPromise = (query) => {
     NProgress.set(0.4);
     $.ajax({
       type: "GET",
-      url: `${SEARCH_REPOS}${query}`,
+      url: `${SEARCH_REPOS}${query}?access_token=${TOKEN}`,
       success: (data) => {
         NProgress.done();
         resolve(data.items);
@@ -28,7 +28,32 @@ const getReposPromise = (query) => {
   });
 };
 
+const getUserPromise = (data) => {
+  const {url, conatiner} = data;
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      type: "GET",
+      url: `${url}?access_token=${TOKEN}`,
+      success: (data) => {
+        resolve({
+          conatiner,
+          data
+        });
+      },
+      error: (err) => {
+        console.log(err);
+        reject(null);
+      }
+    });
+  });
+};
+
 export const getRepos = (query) => {
   const promise = getReposPromise(query);
+  return Rx.Observable.fromPromise(promise);
+};
+
+export const getUser = (data) => {
+  const promise = getUserPromise(data);
   return Rx.Observable.fromPromise(promise);
 };
