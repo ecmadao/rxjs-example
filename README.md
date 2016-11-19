@@ -19,4 +19,14 @@ $ npm run dev-server
 
 然后打开`http://localhost:8080/webpack-dev-server`即可
 
+## 展示
+
+- 通过`RxJS`，在输入过程中实时进行异步搜索：
+
+![search repos](./readme/search_repos.png)
+
+- `hover`到 avator 上之后异步获取用户信息
+
+![fetch user info](./readme/fetch_info.png) 
+
 <!-- ## 教程目录 [猛戳这里看教程]() -->
