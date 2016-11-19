@@ -134,6 +134,30 @@ input.search {
           left: 50%;
           transform: translate(-50%, -50%);
         }
+
+        & .info_container {
+          height: 25px;
+          line-height: 25px;
+          font-size: 14px;
+          color: #4a4a4a;
+
+          & .info_icon {
+            width: 25px;
+            height: 25px;
+            position: relative;
+            display: inline-block;
+            float: left;
+
+            & i {
+              font-size: 18px;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              color: #737373;
+            }
+          }
+        }
       }
     }
 

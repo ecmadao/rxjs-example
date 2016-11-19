@@ -10,6 +10,7 @@ const showNewResults = ($dom, items) => {
     return reposTemplate(item);
   }).join('');
   $dom.html(repos);
+  initialUserInfoSteam();
 };
 
 const reposTemplate = (repos) => {
@@ -27,6 +28,11 @@ const reposTemplate = (repos) => {
           </a>
         </div>
         <div class="user_infos_container">
+          <div class="user_infos_wrapper">
+            <div class="info_loading">
+              <i aria-hidden="true" class="fa fa-spinner fa-spin"></i>
+            </div>
+          </div>
         </div>
       </div>
       <div class="repos_info_container">
@@ -51,39 +57,30 @@ const showUserInfo = ($dom, data) => {
 
 const userTemplate = (user) => {
   return `<div class="infos_container">
-    <div>
-      <i aria-hidden="true" class="fa fa-user-circle"></i>&nbsp;&nbsp;${user.name}
+    <div class="info_container">
+      <div class="info_icon">
+        <i aria-hidden="true" class="fa fa-user-circle"></i>
+      </div>&nbsp;&nbsp;${user.name}
     </div>
-    <div>
-      <i aria-hidden="true" class="fa fa-map-marker"></i>&nbsp;&nbsp;${user.location}
+    <div class="info_container">
+      <div class="info_icon">
+        <i aria-hidden="true" class="fa fa-map-marker"></i>
+      </div>&nbsp;&nbsp;${user.location}
     </div>
-    <div>
-      <i aria-hidden="true" class="fa fa-users"></i>&nbsp;&nbsp;${user.company}
+    <div class="info_container">
+      <div class="info_icon">
+        <i aria-hidden="true" class="fa fa-users"></i>
+      </div>&nbsp;&nbsp;${user.company}
     </div>
-    <div>
-      <i aria-hidden="true" class="fa fa-edge"></i>&nbsp;&nbsp;${user.blog}
+    <div class="info_container">
+      <div class="info_icon">
+        <i aria-hidden="true" class="fa fa-edge"></i>
+      </div>&nbsp;&nbsp;${user.blog}
     </div>
   </div>`;
 };
 
-$(() => {
-  const $conatiner = $('.content_container');
-  const $input = $('.search');
-  // const observable = Rx.Observable.fromEvent($input, 'keyup')
-  //   .map(() => $input.val())
-  //   .filter((text) => !!text)
-  //   .distinctUntilChanged()
-  //   .debounce(250)
-  //   .flatMapLatest(getRepos);
-
-  // observable.subscribe((data) => {
-  //   showNewResults($conatiner, data);
-  // }, (err) => {
-  //   console.log(err);
-  // }, () => {
-  //   console.log('completed');
-  // });
-
+const initialUserInfoSteam = () => {
   const $avator = $('.user_header');
   const avatorMouseover = Rx.Observable.fromEvent($avator, 'mouseover')
     .map(function(e) {
@@ -116,9 +113,28 @@ $(() => {
     console.log('completed');
   });
 
-  const avatorMouseout = Rx.Observable.fromEvent($avator, 'mouseout')
+  Rx.Observable.fromEvent($avator, 'mouseout')
     .map(function(e) {
       const $infosContainer = $(e.target).parent().find('.user_infos_container');
       $infosContainer.removeClass('active');
     }).subscribe();
+};
+
+$(() => {
+  const $conatiner = $('.content_container');
+  const $input = $('.search');
+  const observable = Rx.Observable.fromEvent($input, 'keyup')
+    .map(() => $input.val())
+    .filter((text) => !!text)
+    .distinctUntilChanged()
+    .debounce(250)
+    .flatMapLatest(getRepos);
+
+  observable.subscribe((data) => {
+    showNewResults($conatiner, data);
+  }, (err) => {
+    console.log(err);
+  }, () => {
+    console.log('completed');
+  });
 });

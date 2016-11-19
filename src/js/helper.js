@@ -14,7 +14,7 @@ const getReposPromise = (query) => {
     NProgress.set(0.4);
     $.ajax({
       type: "GET",
-      url: `${SEARCH_REPOS}${query}?access_token=${TOKEN}`,
+      url: `${SEARCH_REPOS}${query}`,
       success: (data) => {
         NProgress.done();
         resolve(data.items);
