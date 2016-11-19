@@ -77,84 +77,94 @@ input.search {
       clear: both;
     }
 
-    & img.user_header {
+    & .user_header_container {
       width: 50px;
       float: left;
-      border-radius: 50%;
-      box-shadow: 1px 1px 6px 0 rgba(0, 0, 0, 0.2);
-      transition: all 400ms;
+      position: relative;
+
+      & img.user_header {
+        width: 50px;
+        border-radius: 50%;
+        box-shadow: 1px 1px 6px 0 rgba(0, 0, 0, 0.2);
+        transition: all 400ms;
+      }
 
       &:hover {
-        box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.3);
-      }
-    }
-
-    & .user_infos_container {
-      position: absolute;
-      left: 0;
-      top: 40px;
-      z-index: 0;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 400ms;
-
-      &.active {
-        opacity: 1;
-        visibility: visible;
-        z-index: 9;
-      }
-
-      & .user_infos_wrapper {
-        padding: 10px;
-        background-color: #fff;
-        margin-top: 10px;
-        border-radius: 2px;
-        position: relative;
-        min-width: 150px;
-        max-width: 250px;
-        min-height: 70px;
-        box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.3);
-
-        &::after {
-          content: '';
-          display: block;
-          width: 0;
-          height: 0;
-          border-left: 7px solid transparent;
-          border-right: 7px solid transparent;
-          border-bottom: 10px solid #f0f0f0;
-          position: absolute;
-          top: -10px;
-          left: 16.5px;
+        & .user_infos_container {
+          opacity: 1;
+          visibility: visible;
+          z-index: 9;
         }
 
-        & .info_loading {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
+        & img.user_header {
+          box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.3);
         }
+      }
 
-        & .info_container {
-          height: 25px;
-          line-height: 25px;
-          font-size: 14px;
-          color: #4a4a4a;
+      & .user_infos_container {
+        position: absolute;
+        left: 0;
+        top: 45px;
+        z-index: 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 400ms;
 
-          & .info_icon {
-            width: 25px;
+        & .user_infos_wrapper {
+          padding: 10px;
+          background-color: #fff;
+          margin-top: 10px;
+          border-radius: 2px;
+          position: relative;
+          min-width: 150px;
+          max-width: 300px;
+          min-height: 70px;
+          box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.3);
+
+          &::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-bottom: 10px solid #f0f0f0;
+            position: absolute;
+            top: -10px;
+            left: 16.5px;
+          }
+
+          & .info_loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+
+          & .info_container {
             height: 25px;
-            position: relative;
-            display: inline-block;
-            float: left;
+            line-height: 25px;
+            font-size: 14px;
+            color: #4a4a4a;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
 
-            & i {
-              font-size: 18px;
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
-              color: #737373;
+            & .info_icon {
+              width: 25px;
+              height: 25px;
+              position: relative;
+              display: inline-block;
+              float: left;
+
+              & i {
+                font-size: 18px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: #737373;
+              }
             }
           }
         }

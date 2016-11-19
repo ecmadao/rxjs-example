@@ -18,7 +18,16 @@ const reposTemplate = (repos) => {
   return `<div class="repos_item">
     <div class="repos_item_wrapper">
       <div class="repos_user_container">
-        <img data-api="${owner.url}" class="user_header" src="${owner.avatar_url}"/>
+        <div class="user_header_container">
+          <img data-api="${owner.url}" class="user_header" src="${owner.avatar_url}"/>
+          <div class="user_infos_container">
+            <div class="user_infos_wrapper">
+              <div class="info_loading">
+                <i aria-hidden="true" class="fa fa-spinner fa-spin"></i>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="user_info">
           <a class="user_link" target="_blank" href="${owner.html_url}">
             ${owner.login}
@@ -26,13 +35,6 @@ const reposTemplate = (repos) => {
           <a class="repos_link" target="_blank" href="${repos.html_url}">
             ${repos.name}
           </a>
-        </div>
-        <div class="user_infos_container">
-          <div class="user_infos_wrapper">
-            <div class="info_loading">
-              <i aria-hidden="true" class="fa fa-spinner fa-spin"></i>
-            </div>
-          </div>
         </div>
       </div>
       <div class="repos_info_container">
