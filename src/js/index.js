@@ -63,7 +63,7 @@ const userTemplate = (user) => {
     <div class="info_container">
       <div class="info_icon">
         <i aria-hidden="true" class="fa fa-user-circle"></i>
-      </div>&nbsp;&nbsp;${user.name}
+      </div>&nbsp;&nbsp;${user.name || user.login}
     </div>
     ${user.location ? `<div class="info_container">
       <div class="info_icon">
@@ -93,6 +93,7 @@ const userTemplate = (user) => {
     <div class="info_container info_social">
       <i aria-hidden="true" class="fa fa-cube"></i>&nbsp;${user.public_repos}&nbsp;&nbsp;
       <i aria-hidden="true" class="fa fa-user-plus"></i>&nbsp;${user.followers}&nbsp;&nbsp;
+      <i aria-hidden="true" class="fa fa-calendar-check-o"></i>&nbsp;${user.updated_at.split('T')[0]}
     </div>
   </div>`;
 };
