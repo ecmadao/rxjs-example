@@ -101,16 +101,14 @@ const userTemplate = (user) => {
 const initialUserInfoSteam = () => {
   const $avator = $('.user_header');
   const avatorMouseover = Rx.Observable.fromEvent($avator, 'mouseover')
-    .map(function(e) {
-      const $userContainer = $(e.target).parent();
-      const $infosContainer = $userContainer.find('.user_infos_container');
-      const $infosWrapper = $infosContainer.find('.user_infos_wrapper');
-      $infosContainer.addClass('active');
-      if ($infosWrapper.find('.infos_container').length) {
+    .debounce(500)
+    .map((e) => {
+      const $infosWrapper = $(e.target).parent().find('.user_infos_wrapper');
+      if ($infosWrapper.find('.infos_container').length > 0) {
         return {
           conatiner: $infosWrapper,
           url: null
-        };
+        }
       }
       return {
         conatiner: $infosWrapper,
@@ -118,8 +116,6 @@ const initialUserInfoSteam = () => {
       }
     })
     .filter((data) => !!data.url)
-    .distinctUntilChanged()
-    .debounce(250)
     .flatMapLatest(getUser);
 
   avatorMouseover.subscribe((result) => {
@@ -131,11 +127,10 @@ const initialUserInfoSteam = () => {
     console.log('completed');
   });
 
-  Rx.Observable.fromEvent($avator, 'mouseout')
-    .map(function(e) {
-      const $infosContainer = $(e.target).parent().find('.user_infos_container');
-      $infosContainer.removeClass('active');
-    }).subscribe();
+  // Rx.Observable.fromEvent($avator, 'mouseout')
+  //   .map(function(e) {
+  //     avatorMouseover.dispose();
+  //   }).subscribe();
 };
 
 $(() => {
@@ -145,7 +140,7 @@ $(() => {
     .map(() => $input.val())
     .filter((text) => !!text)
     .distinctUntilChanged()
-    .debounce(250)
+    .debounce(400)
     .flatMapLatest(getRepos);
 
   observable.subscribe((data) => {
