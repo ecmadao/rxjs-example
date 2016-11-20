@@ -137,10 +137,11 @@ $(() => {
   const $conatiner = $('.content_container');
   const $input = $('.search');
   const observable = Rx.Observable.fromEvent($input, 'keyup')
+    .debounce(400)
     .map(() => $input.val())
     .filter((text) => !!text)
     .distinctUntilChanged()
-    .debounce(400)
+    .do((value) => console.log(value))
     .flatMapLatest(getRepos);
 
   observable.subscribe((data) => {

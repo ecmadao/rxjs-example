@@ -1,6 +1,6 @@
 # rxjs-example
 
-通过构建一个简单的 github 应用，学习 RxJS 的快速入门教程
+通过构建一个简单的 github 应用，学习 RxJS 的快速入门教程。线上 DEMO 可戳 [https://ecmadao.github.io/rxjs-example](https://ecmadao.github.io/rxjs-example/)
 
 ## 开始前的准备
 
@@ -27,6 +27,13 @@ $ npm run dev-server
 
 - `hover`到 avator 上之后异步获取用户信息
 
-![fetch user info](./readme/fetch_info.png) 
+![fetch user info](./readme/fetch_info.png)
 
-<!-- ## 教程目录 [猛戳这里看教程]() -->
+## 教程目录
+
+> 猛戳这里看教程：[探索 RxJS - 做一个 github 小应用](https://github.com/ecmadao/Coding-Guide/blob/master/Notes/RxJS/%E6%8E%A2%E7%B4%A2RxJS-%E5%81%9A%E4%B8%80%E4%B8%AAgithub%E5%B0%8F%E5%BA%94%E7%94%A8.md)
+
+- [初始化 DOM 事件流](https://github.com/ecmadao/Coding-Guide/blob/master/Notes/RxJS/%E6%8E%A2%E7%B4%A2RxJS-%E5%81%9A%E4%B8%80%E4%B8%AAgithub%E5%B0%8F%E5%BA%94%E7%94%A8.md#初始化-dom-事件流)
+- [实时进行异步获取](https://github.com/ecmadao/Coding-Guide/blob/master/Notes/RxJS/%E6%8E%A2%E7%B4%A2RxJS-%E5%81%9A%E4%B8%80%E4%B8%AAgithub%E5%B0%8F%E5%BA%94%E7%94%A8.md#实时进行异步获取)
+- [优化事件流](https://github.com/ecmadao/Coding-Guide/blob/master/Notes/RxJS/%E6%8E%A2%E7%B4%A2RxJS-%E5%81%9A%E4%B8%80%E4%B8%AAgithub%E5%B0%8F%E5%BA%94%E7%94%A8.md#优化事件流)
+- [流的监听](https://github.com/ecmadao/Coding-Guide/blob/master/Notes/RxJS/%E6%8E%A2%E7%B4%A2RxJS-%E5%81%9A%E4%B8%80%E4%B8%AAgithub%E5%B0%8F%E5%BA%94%E7%94%A8.md#流的监听)
