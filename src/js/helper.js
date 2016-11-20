@@ -7,6 +7,22 @@ import {TOKEN} from './const_value';
 polyfill();
 
 const SEARCH_REPOS = 'https://api.github.com/search/repositories?sort=stars&order=desc&q=';
+const KB2MB = 0.0009765625;
+const KB2BYTES = 1024;
+
+const formatRepoSize = (repoSize) => {
+  return parseInt(repoSize).toFixed(2);
+}
+
+export const formatRepoSizeAndUnit = (repoSize) => {
+  if (repoSize < 1) {
+    return [formatRepoSize(repoSize * KB2BYTES), 'Bytes'];
+  }
+  if (repoSize >= 1 / KB2MB) {
+    return [formatRepoSize(repoSize * KB2MB), 'MB'];
+  }
+  return [repoSize, 'KB'];
+};
 
 const getReposPromise = (query) => {
   return new Promise((resolve, reject) => {

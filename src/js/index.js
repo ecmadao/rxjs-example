@@ -1,7 +1,8 @@
 import Rx from 'rx';
 import {
   getRepos,
-  getUser
+  getUser,
+  formatRepoSizeAndUnit
 } from './helper';
 import '../css/base.css';
 
@@ -46,7 +47,7 @@ const reposTemplate = (repos) => {
           <i aria-hidden="true" class="fa fa-star"></i>&nbsp;${repos.stargazers_count}&nbsp;&nbsp;
           <i aria-hidden="true" class="fa fa-eye"></i>&nbsp;${repos.watchers_count}&nbsp;&nbsp;
           <i aria-hidden="true" class="fa fa-code-fork"></i>&nbsp;${repos.forks_count}&nbsp;&nbsp;
-          <i aria-hidden="true" class="fa fa-file-archive-o"></i>&nbsp;${repos.size}
+          <i aria-hidden="true" class="fa fa-file-archive-o"></i>&nbsp;${formatRepoSizeAndUnit(repos.size).join(' ')}
         </div>
       </div>
     </div>
