@@ -69,6 +69,11 @@ const userTemplate = (user) => {
         <i aria-hidden="true" class="fa fa-map-marker"></i>
       </div>&nbsp;&nbsp;${user.location}
     </div>` : ''}
+    ${user.email ? `<a class="info_container" href="mailto:${user.email}">
+      <div class="info_icon">
+        <i aria-hidden="true" class="fa fa-envelope-o"></i>
+      </div>&nbsp;&nbsp;${user.email}
+    </a>` : ''}
     ${user.company ? `<div class="info_container">
       <div class="info_icon">
         <i aria-hidden="true" class="fa fa-users"></i>
@@ -76,9 +81,18 @@ const userTemplate = (user) => {
     </div>` : ''}
     ${user.blog ? `<a class="info_container" target="_blank" href="${user.blog}">
       <div class="info_icon">
-        <i aria-hidden="true" class="fa fa-edge"></i>
+        <i aria-hidden="true" class="fa fa-chrome"></i>
       </div>&nbsp;&nbsp;${user.blog}
     </a>` : ''}
+    ${user.bio ? `<div class="info_container info_bio">
+      <div class="info_icon">
+        <i aria-hidden="true" class="fa fa-quote-left"></i>
+      </div>&nbsp;&nbsp;${user.bio}
+    </div>` : ''}
+    <div class="info_container info_social">
+      <i aria-hidden="true" class="fa fa-cube"></i>&nbsp;${user.public_repos}&nbsp;&nbsp;
+      <i aria-hidden="true" class="fa fa-user-plus"></i>&nbsp;${user.followers}&nbsp;&nbsp;
+    </div>
   </div>`;
 };
 
