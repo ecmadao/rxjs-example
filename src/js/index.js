@@ -6,14 +6,6 @@ import {
 } from './helper';
 import '../css/base.css';
 
-const showNewResults = ($dom, items) => {
-  const repos = items.map((item, i) => {
-    return reposTemplate(item);
-  }).join('');
-  $dom.html(repos);
-  initialUserInfoSteam();
-};
-
 const reposTemplate = (repos) => {
   const {owner} = repos;
   return `<div class="repos_item">
@@ -98,8 +90,8 @@ const userTemplate = (user) => {
   </div>`;
 };
 
-const initialUserInfoSteam = () => {
-  const $avator = $('.user_header');
+const initialUserInfoSteam = (repos) => {
+  const $avator = repos.find('.user_header');
   const avatorMouseover = Rx.Observable.fromEvent($avator, 'mouseover')
     .debounce(500)
     .map((e) => {
@@ -126,11 +118,6 @@ const initialUserInfoSteam = () => {
   }, () => {
     console.log('completed');
   });
-
-  // Rx.Observable.fromEvent($avator, 'mouseout')
-  //   .map(function(e) {
-  //     avatorMouseover.dispose();
-  //   }).subscribe();
 };
 
 $(() => {
@@ -141,11 +128,17 @@ $(() => {
     .map(() => $input.val().trim())
     .filter((text) => !!text)
     .distinctUntilChanged()
-    .do((value) => console.log(value))
-    .flatMapLatest(getRepos);
+    .flatMapLatest(getRepos)
+    .do((results) => $conatiner.html(''))
+    .flatMap((results) => Rx.Observable.from(results))
+    .map((repos) => $(reposTemplate(repos)))
+    .do(($repos) => {
+      $conatiner.append($repos);
+      initialUserInfoSteam($repos);
+    });
 
-  observable.subscribe((data) => {
-    showNewResults($conatiner, data);
+  observable.subscribe(() => {
+    console.log('success');
   }, (err) => {
     console.log(err);
   }, () => {
