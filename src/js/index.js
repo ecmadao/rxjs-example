@@ -138,7 +138,7 @@ $(() => {
   const $input = $('.search');
   const observable = Rx.Observable.fromEvent($input, 'keyup')
     .debounce(400)
-    .map(() => $input.val())
+    .map(() => $input.val().trim())
     .filter((text) => !!text)
     .distinctUntilChanged()
     .do((value) => console.log(value))

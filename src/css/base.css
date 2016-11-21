@@ -238,6 +238,7 @@ input.search {
 
     & .repos_desc {
       margin: 15px 0;
+      overflow: hidden;
     }
 
     & .repos_info {
