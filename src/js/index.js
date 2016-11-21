@@ -94,14 +94,12 @@ const initialUserInfoSteam = (repos) => {
   const $avator = repos.find('.user_header');
   const avatorMouseover = Rx.Observable.fromEvent($avator, 'mouseover')
     .debounce(500)
+    .takeWhile((e) => {
+      const $infosWrapper = $(e.target).parent().find('.user_infos_wrapper');
+      return $infosWrapper.find('.infos_container').length === 0;
+    })
     .map((e) => {
       const $infosWrapper = $(e.target).parent().find('.user_infos_wrapper');
-      if ($infosWrapper.find('.infos_container').length > 0) {
-        return {
-          conatiner: $infosWrapper,
-          url: null
-        }
-      }
       return {
         conatiner: $infosWrapper,
         url: $(e.target).attr('data-api')
