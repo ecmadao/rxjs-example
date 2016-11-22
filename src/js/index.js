@@ -90,9 +90,9 @@ const userTemplate = (user) => {
   </div>`;
 };
 
-const initialUserInfoSteam = (repos) => {
-  const $avator = repos.find('.user_header');
-  const avatorMouseover = Rx.Observable.fromEvent($avator, 'mouseover')
+const userInfoSteam = ($repos) => {
+  const $avator = $repos.find('.user_header');
+  const avatorMouseoverObservable = Rx.Observable.fromEvent($avator, 'mouseover')
     .debounce(500)
     .takeWhile((e) => {
       const $infosWrapper = $(e.target).parent().find('.user_infos_wrapper');
@@ -106,16 +106,13 @@ const initialUserInfoSteam = (repos) => {
       }
     })
     .filter((data) => !!data.url)
-    .flatMapLatest(getUser);
+    .flatMapLatest(getUser)
+    .do((result) => {
+      const {data, conatiner} = result;
+      showUserInfo(conatiner, data);
+    });
 
-  avatorMouseover.subscribe((result) => {
-    const {data, conatiner} = result;
-    showUserInfo(conatiner, data);
-  }, (err) => {
-    console.log(err);
-  }, () => {
-    console.log('completed');
-  });
+  return avatorMouseoverObservable;
 };
 
 $(() => {
@@ -132,7 +129,10 @@ $(() => {
     .map((repos) => $(reposTemplate(repos)))
     .do(($repos) => {
       $conatiner.append($repos);
-      initialUserInfoSteam($repos);
+      // initialUserInfoSteam($repos);
+    })
+    .flatMap(($repos) => {
+      return userInfoSteam($repos);
     });
 
   observable.subscribe(() => {
