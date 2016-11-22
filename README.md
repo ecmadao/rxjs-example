@@ -37,3 +37,5 @@ $ npm run dev-server
 - [实时进行异步获取](https://github.com/ecmadao/Coding-Guide/blob/master/Notes/RxJS/%E6%8E%A2%E7%B4%A2RxJS-%E5%81%9A%E4%B8%80%E4%B8%AAgithub%E5%B0%8F%E5%BA%94%E7%94%A8.md#实时进行异步获取)
 - [优化事件流](https://github.com/ecmadao/Coding-Guide/blob/master/Notes/RxJS/%E6%8E%A2%E7%B4%A2RxJS-%E5%81%9A%E4%B8%80%E4%B8%AAgithub%E5%B0%8F%E5%BA%94%E7%94%A8.md#优化事件流)
 - [流的监听](https://github.com/ecmadao/Coding-Guide/blob/master/Notes/RxJS/%E6%8E%A2%E7%B4%A2RxJS-%E5%81%9A%E4%B8%80%E4%B8%AAgithub%E5%B0%8F%E5%BA%94%E7%94%A8.md#流的监听)
+- [更加优雅的 Rx 风格](https://github.com/ecmadao/Coding-Guide/blob/master/Notes/RxJS/%E6%8E%A2%E7%B4%A2RxJS-%E5%81%9A%E4%B8%80%E4%B8%AAgithub%E5%B0%8F%E5%BA%94%E7%94%A8.md#%E6%9B%B4%E5%8A%A0%E4%BC%98%E9%9B%85%E7%9A%84-rx-%E9%A3%8E%E6%A0%BC)
+- [创建基于`hover`的事件流](https://github.com/ecmadao/Coding-Guide/blob/master/Notes/RxJS/%E6%8E%A2%E7%B4%A2RxJS-%E5%81%9A%E4%B8%80%E4%B8%AAgithub%E5%B0%8F%E5%BA%94%E7%94%A8.md#%E5%88%9B%E5%BB%BA%E5%9F%BA%E4%BA%8Ehover%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%B5%81)
