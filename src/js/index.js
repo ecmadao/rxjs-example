@@ -6,14 +6,6 @@ import {
 } from './helper';
 import '../css/base.css';
 
-const showNewResults = ($dom, items) => {
-  const repos = items.map((item, i) => {
-    return reposTemplate(item);
-  }).join('');
-  $dom.html(repos);
-  initialUserInfoSteam();
-};
-
 const reposTemplate = (repos) => {
   const {owner} = repos;
   return `<div class="repos_item">
@@ -98,39 +90,29 @@ const userTemplate = (user) => {
   </div>`;
 };
 
-const initialUserInfoSteam = () => {
-  const $avator = $('.user_header');
-  const avatorMouseover = Rx.Observable.fromEvent($avator, 'mouseover')
+const userInfoSteam = ($repos) => {
+  const $avator = $repos.find('.user_header');
+  const avatorMouseoverObservable = Rx.Observable.fromEvent($avator, 'mouseover')
     .debounce(500)
+    .takeWhile((e) => {
+      const $infosWrapper = $(e.target).parent().find('.user_infos_wrapper');
+      return $infosWrapper.find('.infos_container').length === 0;
+    })
     .map((e) => {
       const $infosWrapper = $(e.target).parent().find('.user_infos_wrapper');
-      if ($infosWrapper.find('.infos_container').length > 0) {
-        return {
-          conatiner: $infosWrapper,
-          url: null
-        }
-      }
       return {
         conatiner: $infosWrapper,
         url: $(e.target).attr('data-api')
       }
     })
     .filter((data) => !!data.url)
-    .flatMapLatest(getUser);
+    .flatMapLatest(getUser)
+    .do((result) => {
+      const {data, conatiner} = result;
+      showUserInfo(conatiner, data);
+    });
 
-  avatorMouseover.subscribe((result) => {
-    const {data, conatiner} = result;
-    showUserInfo(conatiner, data);
-  }, (err) => {
-    console.log(err);
-  }, () => {
-    console.log('completed');
-  });
-
-  // Rx.Observable.fromEvent($avator, 'mouseout')
-  //   .map(function(e) {
-  //     avatorMouseover.dispose();
-  //   }).subscribe();
+  return avatorMouseoverObservable;
 };
 
 $(() => {
@@ -141,11 +123,20 @@ $(() => {
     .map(() => $input.val().trim())
     .filter((text) => !!text)
     .distinctUntilChanged()
-    .do((value) => console.log(value))
-    .flatMapLatest(getRepos);
+    .flatMapLatest(getRepos)
+    .do((results) => $conatiner.html(''))
+    .flatMap((results) => Rx.Observable.from(results))
+    .map((repos) => $(reposTemplate(repos)))
+    .do(($repos) => {
+      $conatiner.append($repos);
+      // initialUserInfoSteam($repos);
+    })
+    .flatMap(($repos) => {
+      return userInfoSteam($repos);
+    });
 
-  observable.subscribe((data) => {
-    showNewResults($conatiner, data);
+  observable.subscribe(() => {
+    console.log('success');
   }, (err) => {
     console.log(err);
   }, () => {
