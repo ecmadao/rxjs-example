@@ -1,3 +1,4 @@
+import 'normalize.css';
 import Rx from 'rx';
 import {
   getRepos,
