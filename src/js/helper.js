@@ -1,9 +1,8 @@
-// import Rx from 'rxjs/Rx';
 import Rx from 'rx';
-import {polyfill} from 'es6-promise';
+import { polyfill } from 'es6-promise';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
-import {TOKEN} from './const_value';
+import { TOKEN } from './const_value';
 polyfill();
 
 const SEARCH_REPOS = 'https://api.github.com/search/repositories?sort=stars&order=desc&q=';
@@ -12,7 +11,7 @@ const KB2BYTES = 1024;
 
 const formatRepoSize = (repoSize) => {
   return parseInt(repoSize).toFixed(2);
-}
+};
 
 export const formatRepoSizeAndUnit = (repoSize) => {
   if (repoSize < 1) {
@@ -45,7 +44,7 @@ const getReposPromise = (query) => {
 };
 
 const getUserPromise = (data) => {
-  const {url, conatiner} = data;
+  const { url, conatiner } = data;
   return new Promise((resolve, reject) => {
     $.ajax({
       type: "GET",
