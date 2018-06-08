@@ -23,11 +23,11 @@ $ npm run dev-server
 
 - 通过`RxJS`，在输入过程中实时进行异步搜索：
 
-![search repos](./readme/search_repos.png)
+![search repos](./images/search_repos.png)
 
 - `hover`到 avator 上之后异步获取用户信息
 
-![fetch user info](./readme/fetch_info.png)
+![fetch user info](./images/fetch_info.png)
 
 ## 教程目录
 

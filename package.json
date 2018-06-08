@@ -5,8 +5,7 @@
   "main": "index.html",
   "scripts": {
     "build": "./node_modules/webpack/bin/webpack.js -p",
-    "dev-server": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --content-base build/",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev-server": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --content-base build/"
   },
   "author": "",
   "license": "ISC",
